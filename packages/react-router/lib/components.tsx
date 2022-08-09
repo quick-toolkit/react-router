@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { InitialEntry, Location, MemoryHistory, To } from "history";
+import type {InitialEntry, Location, MemoryHistory, Path, To} from "history";
 import {
   Action as NavigationType,
   createMemoryHistory,
@@ -114,6 +114,7 @@ export interface RouteProps {
   caseSensitive?: boolean;
   children?: React.ReactNode;
   element?: React.ReactNode | null;
+  validator?: (path: Partial<Path>, params: Record<string, any>) => boolean;
   index?: boolean;
   path?: string;
 }
@@ -299,6 +300,7 @@ export function createRoutesFromChildren(
       caseSensitive: element.props.caseSensitive,
       element: element.props.element,
       index: element.props.index,
+      validator: element.props.validator,
       path: element.props.path,
     };
 

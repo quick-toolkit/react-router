@@ -31,8 +31,8 @@ import {
   useResolvedPath,
   useRoutes,
   useOutletContext,
-} from "react-router";
-import type { To } from "react-router";
+} from "@quick-toolkit/react-router";
+import type { To } from "@quick-toolkit/react-router";
 
 function warning(cond: boolean, message: string): void {
   if (!cond) {
@@ -84,7 +84,7 @@ export {
   useOutletContext,
 };
 
-export { NavigationType } from "react-router";
+export { NavigationType } from "@quick-toolkit/react-router";
 export type {
   Hash,
   Location,
@@ -108,7 +108,7 @@ export type {
   Pathname,
   Search,
   RoutesProps,
-} from "react-router";
+} from "@quick-toolkit/react-router";
 
 ///////////////////////////////////////////////////////////////////////////////
 // DANGER! PLEASE READ ME!
@@ -128,7 +128,7 @@ export {
   UNSAFE_NavigationContext,
   UNSAFE_LocationContext,
   UNSAFE_RouteContext,
-} from "react-router";
+} from "@quick-toolkit/react-router";
 
 ////////////////////////////////////////////////////////////////////////////////
 // COMPONENTS

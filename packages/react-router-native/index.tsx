@@ -34,8 +34,8 @@ import {
   useResolvedPath,
   useRoutes,
   useOutletContext,
-} from "react-router";
-import type { To } from "react-router";
+} from "@quick-toolkit/react-router";
+import type { To } from "@quick-toolkit/react-router";
 
 import URLSearchParams from "@ungap/url-search-params";
 
@@ -72,7 +72,7 @@ export {
   useOutletContext,
 };
 
-export { NavigationType } from "react-router";
+export { NavigationType } from "@quick-toolkit/react-router";
 export type {
   Hash,
   IndexRouteProps,
@@ -96,7 +96,7 @@ export type {
   Pathname,
   Search,
   To,
-} from "react-router";
+} from "@quick-toolkit/react-router";
 
 ///////////////////////////////////////////////////////////////////////////////
 // DANGER! PLEASE READ ME!
@@ -116,7 +116,7 @@ export {
   UNSAFE_NavigationContext,
   UNSAFE_LocationContext,
   UNSAFE_RouteContext,
-} from "react-router";
+} from "@quick-toolkit/react-router";
 
 ////////////////////////////////////////////////////////////////////////////////
 // COMPONENTS

@@ -91,6 +91,7 @@ export interface RouteObject {
   caseSensitive?: boolean;
   children?: RouteObject[];
   element?: React.ReactNode;
+  validator?: (path: Partial<Path>, params: Record<string, any>) => boolean;
   index?: boolean;
   path?: string;
 }
@@ -157,7 +158,7 @@ export function matchRoutes(
 
   let matches = null;
   for (let i = 0; matches == null && i < branches.length; ++i) {
-    matches = matchRouteBranch(branches[i], pathname);
+    matches = matchRouteBranch(branches[i], pathname, location);
   }
 
   return matches;
@@ -290,7 +291,8 @@ function compareIndexes(a: number[], b: number[]): number {
 
 function matchRouteBranch<ParamKey extends string = string>(
   branch: RouteBranch,
-  pathname: string
+  pathname: string,
+  path: Partial<Path>
 ): RouteMatch<ParamKey>[] | null {
   let { routesMeta } = branch;
 
@@ -309,7 +311,13 @@ function matchRouteBranch<ParamKey extends string = string>(
       remainingPathname
     );
 
-    if (!match) return null;
+    let validated = true;
+
+    if (typeof meta.route.validator === 'function') {
+      validated = meta.route.validator(path, matchedParams);
+    }
+
+    if (!match || !validated) return null;
 
     Object.assign(matchedParams, match.params);
 

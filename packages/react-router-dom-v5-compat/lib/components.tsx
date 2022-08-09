@@ -4,7 +4,7 @@ import { Action, createPath, parsePath } from "history";
 
 // Get useHistory from react-router-dom v5 (peer dep).
 // @ts-expect-error
-import { useHistory, Route as RouteV5 } from "react-router-dom";
+import { useHistory, Route as RouteV5 } from "@quick-toolkit/react-router-dom";
 
 // We are a wrapper around react-router-dom v6, so bring it in
 // and bundle it because an app can't have two versions of
