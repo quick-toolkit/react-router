@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {InitialEntry, Location, MemoryHistory, Path, To} from "history";
+import type { InitialEntry, Location, MemoryHistory, Path, To } from "history";
 import {
   Action as NavigationType,
   createMemoryHistory,
@@ -15,7 +15,8 @@ import {
   _renderMatches,
 } from "./hooks";
 import type { RouteMatch, RouteObject } from "./router";
-import { invariant, normalizePathname, stripBasename, warning } from "./router";
+import {invariant, normalizePathname, PathMatch, stripBasename, warning} from "./router";
+import {LocaleLanguageKey} from "./constants";
 
 export interface MemoryRouterProps {
   basename?: string;
@@ -114,26 +115,30 @@ export interface RouteProps {
   caseSensitive?: boolean;
   children?: React.ReactNode;
   element?: React.ReactNode | null;
-  validator?: (path: Partial<Path>, params: Record<string, any>) => boolean;
+  validator?: (match: PathMatch) => boolean;
+  title?: string | Record<LocaleLanguageKey, string>;
+  name?: string;
   index?: boolean;
   path?: string;
 }
 
-export interface PathRouteProps {
-  caseSensitive?: boolean;
-  children?: React.ReactNode;
-  element?: React.ReactNode | null;
+export interface PathRouteProps extends Omit<RouteProps, 'index'> {
   index?: false;
-  path: string;
 }
 
 export interface LayoutRouteProps {
+  validator?: (match: PathMatch) => boolean;
   children?: React.ReactNode;
+  title?: string | Record<LocaleLanguageKey, string>;
   element?: React.ReactNode | null;
+  name?: string;
 }
 
 export interface IndexRouteProps {
+  validator?: (match: PathMatch) => boolean;
   element?: React.ReactNode | null;
+  title?: string | Record<LocaleLanguageKey, string>;
+  name?: string;
   index: true;
 }
 
@@ -299,9 +304,11 @@ export function createRoutesFromChildren(
     let route: RouteObject = {
       caseSensitive: element.props.caseSensitive,
       element: element.props.element,
+      title: element.props.title,
       index: element.props.index,
       validator: element.props.validator,
       path: element.props.path,
+      name: element.props.name,
     };
 
     if (element.props.children) {

@@ -31,6 +31,8 @@ import {
   useResolvedPath,
   useRoutes,
   useOutletContext,
+  useRouteContext,
+  useRouteCurrent,
 } from "@quick-toolkit/react-router";
 import type { To } from "@quick-toolkit/react-router";
 
@@ -82,6 +84,8 @@ export {
   useResolvedPath,
   useRoutes,
   useOutletContext,
+  useRouteContext,
+  useRouteCurrent,
 };
 
 export { NavigationType } from "@quick-toolkit/react-router";

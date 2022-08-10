@@ -1,5 +1,6 @@
 import type { Location, Path, To } from "history";
 import { parsePath } from "history";
+import {LocaleLanguageKey} from "./constants";
 
 export function invariant(cond: any, message: string): asserts cond {
   if (!cond) throw new Error(message);
@@ -91,7 +92,9 @@ export interface RouteObject {
   caseSensitive?: boolean;
   children?: RouteObject[];
   element?: React.ReactNode;
-  validator?: (path: Partial<Path>, params: Record<string, any>) => boolean;
+  validator?: (match: RouteMatch) => boolean;
+  title?: string | Record<LocaleLanguageKey, string>;
+  name?: string;
   index?: boolean;
   path?: string;
 }
@@ -132,6 +135,18 @@ export interface RouteMatch<ParamKey extends string = string> {
    * The route object that was used to match.
    */
   route: RouteObject;
+  /**
+   * transform data
+   */
+  data: object | null;
+  /**
+   * The path query strings
+   */
+  search: string;
+  /**
+   * The path has strings
+   */
+  hash: string;
 }
 
 /**
@@ -311,26 +326,24 @@ function matchRouteBranch<ParamKey extends string = string>(
       remainingPathname
     );
 
-    let validated = true;
-
-    if (typeof meta.route.validator === 'function') {
-      validated = meta.route.validator(path, matchedParams);
-    }
-
-    if (!match || !validated) return null;
-
+    if (!match) return null;
     Object.assign(matchedParams, match.params);
 
-    let route = meta.route;
-
-    matches.push({
+    const iRouteMatch: RouteMatch = {
       params: matchedParams,
+      search: path.search || "",
+      hash: path.hash || "",
+      data: null,
       pathname: joinPaths([matchedPathname, match.pathname]),
       pathnameBase: normalizePathname(
         joinPaths([matchedPathname, match.pathnameBase])
       ),
-      route,
-    });
+      route: meta.route,
+    };
+
+    if (typeof meta.route.validator === "function" && !meta.route.validator(iRouteMatch)) return null;
+
+    matches.push(iRouteMatch);
 
     if (match.pathnameBase !== "/") {
       matchedPathname = joinPaths([matchedPathname, match.pathnameBase]);

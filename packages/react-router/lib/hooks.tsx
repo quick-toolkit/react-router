@@ -2,7 +2,7 @@ import * as React from "react";
 import type { Location, Path, To } from "history";
 import { Action as NavigationType, parsePath } from "history";
 
-import { LocationContext, NavigationContext, RouteContext } from "./context";
+import {LocationContext, NavigationContext, RouteContext, RouteContextObject} from "./context";
 import type {
   ParamParseKey,
   Params,
@@ -220,6 +220,14 @@ export function useOutlet(context?: unknown): React.ReactElement | null {
   return outlet;
 }
 
+export function useRouteContext(): RouteContextObject {
+  return React.useContext(RouteContext);
+}
+
+export function useRouteCurrent(): RouteObject | null {
+  return React.useContext(RouteContext).current
+}
+
 /**
  * Returns an object of key/value pairs of the dynamic params from the current
  * URL that were matched by the route path.
@@ -370,13 +378,15 @@ export function useRoutes(
               : joinPaths([parentPathnameBase, match.pathnameBase]),
         })
       ),
-    parentMatches
+    parentMatches,
+    routes,
   );
 }
 
 export function _renderMatches(
   matches: RouteMatch[] | null,
-  parentMatches: RouteMatch[] = []
+  parentMatches: RouteMatch[] = [],
+  routes: RouteObject[] = [],
 ): React.ReactElement | null {
   if (matches == null) return null;
 
@@ -388,7 +398,10 @@ export function _renderMatches(
         }
         value={{
           outlet,
+          routes,
           matches: parentMatches.concat(matches.slice(0, index + 1)),
+          current: match.route,
+          data: match.data,
         }}
       />
     );

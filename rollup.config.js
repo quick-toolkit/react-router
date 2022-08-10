@@ -232,7 +232,7 @@ function reactRouterDom() {
         sourcemap: !PRETTY,
         banner: createBanner("React Router DOM", version),
       },
-      external: ["history", "react", "react-dom", "react-router"],
+      external: ["history", "react", "react-dom", "@quick-toolkit/react-router"],
       plugins: [
         babel({
           exclude: /node_modules/,
@@ -268,7 +268,7 @@ function reactRouterDom() {
         sourcemap: !PRETTY,
         banner: createBanner("React Router DOM", version),
       },
-      external: ["history", "react", "react-router"],
+      external: ["history", "react", "@quick-toolkit/react-router"],
       plugins: [
         babel({
           exclude: /node_modules/,
@@ -294,7 +294,7 @@ function reactRouterDom() {
         sourcemap: !PRETTY,
         banner: createBanner("React Router DOM", version),
       },
-      external: ["history", "react", "react-router"],
+      external: ["history", "react", "@quick-toolkit/react-router"],
       plugins: [
         babel({
           exclude: /node_modules/,
@@ -340,11 +340,11 @@ function reactRouterDom() {
         globals: {
           history: "HistoryLibrary",
           react: "React",
-          "react-router": "ReactRouter",
+          "@quick-toolkit/react-router": "ReactRouter",
         },
         name: "ReactRouterDOM",
       },
-      external: ["history", "react", "react-router"],
+      external: ["history", "react", "@quick-toolkit/react-router"],
       plugins: [
         babel({
           exclude: /node_modules/,
@@ -372,11 +372,11 @@ function reactRouterDom() {
         globals: {
           history: "HistoryLibrary",
           react: "React",
-          "react-router": "ReactRouter",
+          "@quick-toolkit/react-router": "ReactRouter",
         },
         name: "ReactRouterDOM",
       },
-      external: ["history", "react", "react-router"],
+      external: ["history", "react", "@quick-toolkit/react-router"],
       plugins: [
         babel({
           exclude: /node_modules/,
@@ -420,7 +420,7 @@ function reactRouterDom() {
         "history",
         "react",
         "react-dom/server",
-        "react-router-dom",
+        "@quick-toolkit/react-router-dom",
       ],
       plugins: [
         babel({
@@ -447,7 +447,7 @@ function reactRouterDom() {
         "history",
         "react",
         "react-dom/server",
-        "react-router-dom",
+        "@quick-toolkit/react-router-dom",
       ],
       plugins: [
         babel({
@@ -497,8 +497,8 @@ function reactRouterDomV5Compat() {
         "history",
         "react",
         "react-dom",
-        "react-router",
-        "react-router-dom",
+        "@quick-toolkit/react-router",
+        "@quick-toolkit/react-router-dom",
       ],
       plugins: [
         copy({
@@ -540,12 +540,12 @@ function reactRouterDomV5Compat() {
         globals: {
           history: "HistoryLibrary",
           react: "React",
-          "react-router": "ReactRouter",
-          "react-router-dom": "ReactRouterDOM",
+          "@quick-toolkit/react-router": "ReactRouter",
+          "@quick-toolkit/react-router-dom": "ReactRouterDOM",
         },
         name: "ReactRouterDOMv5Compat",
       },
-      external: ["history", "react", "react-router", "react-router-dom"],
+      external: ["history", "react", "@quick-toolkit/react-router", "@quick-toolkit/react-router-dom"],
       plugins: [
         extensions({ extensions: [".tsx", ".ts"] }),
         babel({
@@ -574,12 +574,12 @@ function reactRouterDomV5Compat() {
         globals: {
           history: "HistoryLibrary",
           react: "React",
-          "react-router": "ReactRouter",
-          "react-router-dom": "ReactRouterDOM",
+          "@quick-toolkit/react-router": "ReactRouter",
+          "@quick-toolkit/react-router-dom": "ReactRouterDOM",
         },
         name: "ReactRouterDOMv5Compat",
       },
-      external: ["history", "react", "react-router", "react-router-dom"],
+      external: ["history", "react", "@quick-toolkit/react-router", "@quick-toolkit/react-router-dom"],
       plugins: [
         extensions({ extensions: [".tsx", ".ts"] }),
         babel({
@@ -638,7 +638,7 @@ function reactRouterNative() {
         "history",
         "react",
         "react-native",
-        "react-router",
+        "@quick-toolkit/react-router",
       ],
       plugins: [
         babel({

@@ -41,6 +41,8 @@ import {
   useParams,
   useResolvedPath,
   useRoutes,
+  useRouteContext,
+  useRouteCurrent,
 } from "./lib/hooks";
 import type {
   Params,
@@ -109,7 +111,11 @@ export {
   useParams,
   useResolvedPath,
   useRoutes,
+  useRouteContext,
+  useRouteCurrent,
 };
+
+export * from './lib/constants'
 
 ///////////////////////////////////////////////////////////////////////////////
 // DANGER! PLEASE READ ME!

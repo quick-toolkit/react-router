@@ -2,7 +2,7 @@ import * as React from "react";
 import type { History, Location } from "history";
 import { Action as NavigationType } from "history";
 
-import type { RouteMatch } from "./router";
+import type {RouteMatch, RouteObject} from "./router";
 
 /**
  * A Navigator is a "location changer"; it's how you get to different locations.
@@ -42,14 +42,20 @@ if (__DEV__) {
   LocationContext.displayName = "Location";
 }
 
-interface RouteContextObject {
+export interface RouteContextObject {
   outlet: React.ReactElement | null;
+  current: RouteObject | null;
   matches: RouteMatch[];
+  routes: RouteObject[];
+  data: object | null;
 }
 
 export const RouteContext = React.createContext<RouteContextObject>({
   outlet: null,
   matches: [],
+  routes: [],
+  current: null,
+  data: null,
 });
 
 if (__DEV__) {

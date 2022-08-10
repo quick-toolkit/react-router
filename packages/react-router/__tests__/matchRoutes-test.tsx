@@ -115,7 +115,7 @@ describe("matchRoutes", () => {
 
   it("returns the same route object on match.route as the one that was passed in", () => {
     let matches = matchRoutes(routes, "/users/mj")!;
-    console.log(matches)
+    console.log(matches);
     expect(matches[0].route).toBe(usersRoute);
     expect(matches[1].route).toBe(userProfileRoute);
   });
