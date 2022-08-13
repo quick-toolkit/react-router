@@ -115,7 +115,7 @@ export interface RouteProps {
   caseSensitive?: boolean;
   children?: React.ReactNode;
   element?: React.ReactNode | null;
-  validator?: (match: PathMatch) => boolean;
+  validator?: (match: RouteMatch) => boolean;
   title?: string | Record<LocaleLanguageKey, string>;
   name?: string;
   index?: boolean;
@@ -127,7 +127,7 @@ export interface PathRouteProps extends Omit<RouteProps, 'index'> {
 }
 
 export interface LayoutRouteProps {
-  validator?: (match: PathMatch) => boolean;
+  validator?: (match: RouteMatch) => boolean;
   children?: React.ReactNode;
   title?: string | Record<LocaleLanguageKey, string>;
   element?: React.ReactNode | null;
@@ -135,7 +135,7 @@ export interface LayoutRouteProps {
 }
 
 export interface IndexRouteProps {
-  validator?: (match: PathMatch) => boolean;
+  validator?: (match: RouteMatch) => boolean;
   element?: React.ReactNode | null;
   title?: string | Record<LocaleLanguageKey, string>;
   name?: string;
