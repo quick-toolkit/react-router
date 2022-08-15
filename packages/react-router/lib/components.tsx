@@ -116,6 +116,7 @@ export interface RouteProps {
   children?: React.ReactNode;
   element?: React.ReactNode | null;
   validator?: (match: RouteMatch) => boolean;
+  icon?: React.ReactNode | null;
   title?: string | Record<LocaleLanguageKey, string>;
   name?: string;
   index?: boolean;
@@ -127,6 +128,7 @@ export interface PathRouteProps extends Omit<RouteProps, 'index'> {
 }
 
 export interface LayoutRouteProps {
+  icon?: React.ReactNode | null;
   validator?: (match: RouteMatch) => boolean;
   children?: React.ReactNode;
   title?: string | Record<LocaleLanguageKey, string>;
@@ -135,6 +137,7 @@ export interface LayoutRouteProps {
 }
 
 export interface IndexRouteProps {
+  icon?: React.ReactNode | null;
   validator?: (match: RouteMatch) => boolean;
   element?: React.ReactNode | null;
   title?: string | Record<LocaleLanguageKey, string>;
@@ -309,6 +312,7 @@ export function createRoutesFromChildren(
       validator: element.props.validator,
       path: element.props.path,
       name: element.props.name,
+      icon: element.props.icon,
     };
 
     if (element.props.children) {

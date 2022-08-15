@@ -1,6 +1,7 @@
 import type { Location, Path, To } from "history";
 import { parsePath } from "history";
 import {LocaleLanguageKey} from "./constants";
+import * as React from "react";
 
 export function invariant(cond: any, message: string): asserts cond {
   if (!cond) throw new Error(message);
@@ -91,6 +92,7 @@ export type Params<Key extends string = string> = {
 export interface RouteObject {
   caseSensitive?: boolean;
   children?: RouteObject[];
+  icon?: React.ReactNode;
   element?: React.ReactNode;
   validator?: (match: RouteMatch) => boolean;
   title?: string | Record<LocaleLanguageKey, string>;
