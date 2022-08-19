@@ -1,6 +1,6 @@
 import type { Location, Path, To } from "history";
 import { parsePath } from "history";
-import {LocaleLanguageKey} from "./constants";
+import { LocaleLanguageKey } from "./constants";
 import * as React from "react";
 
 export function invariant(cond: any, message: string): asserts cond {
@@ -92,10 +92,9 @@ export type Params<Key extends string = string> = {
 export interface RouteObject {
   caseSensitive?: boolean;
   children?: RouteObject[];
-  icon?: React.ReactNode;
   element?: React.ReactNode;
   validator?: (match: RouteMatch) => boolean;
-  title?: string | Record<LocaleLanguageKey, string>;
+  title?: string | Partial<Record<LocaleLanguageKey, string>>;
   name?: string;
   index?: boolean;
   path?: string;
@@ -343,7 +342,11 @@ function matchRouteBranch<ParamKey extends string = string>(
       route: meta.route,
     };
 
-    if (typeof meta.route.validator === "function" && !meta.route.validator(iRouteMatch)) return null;
+    if (
+      typeof meta.route.validator === "function" &&
+      !meta.route.validator(iRouteMatch)
+    )
+      return null;
 
     matches.push(iRouteMatch);
 

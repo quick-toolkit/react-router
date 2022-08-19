@@ -2,7 +2,7 @@ import * as React from "react";
 import type { History, Location } from "history";
 import { Action as NavigationType } from "history";
 
-import type {RouteMatch, RouteObject} from "./router";
+import type { RouteMatch, RouteObject } from "./router";
 
 /**
  * A Navigator is a "location changer"; it's how you get to different locations.

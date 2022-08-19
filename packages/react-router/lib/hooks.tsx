@@ -2,7 +2,12 @@ import * as React from "react";
 import type { Location, Path, To } from "history";
 import { Action as NavigationType, parsePath } from "history";
 
-import {LocationContext, NavigationContext, RouteContext, RouteContextObject} from "./context";
+import {
+  LocationContext,
+  NavigationContext,
+  RouteContext,
+  RouteContextObject,
+} from "./context";
 import type {
   ParamParseKey,
   Params,
@@ -225,7 +230,7 @@ export function useRouteContext(): RouteContextObject {
 }
 
 export function useRouteCurrent(): RouteObject | null {
-  return React.useContext(RouteContext).current
+  return React.useContext(RouteContext).current;
 }
 
 /**
@@ -350,7 +355,11 @@ export function useRoutes(
     parentPathnameBase === "/"
       ? pathname
       : pathname.slice(parentPathnameBase.length) || "/";
-  let matches = matchRoutes(routes, { pathname: remainingPathname, search: location.search, hash: location.hash });
+  let matches = matchRoutes(routes, {
+    pathname: remainingPathname,
+    search: location.search,
+    hash: location.hash,
+  });
 
   if (__DEV__) {
     warning(
@@ -379,14 +388,14 @@ export function useRoutes(
         })
       ),
     parentMatches,
-    routes,
+    routes
   );
 }
 
 export function _renderMatches(
   matches: RouteMatch[] | null,
   parentMatches: RouteMatch[] = [],
-  routes: RouteObject[] = [],
+  routes: RouteObject[] = []
 ): React.ReactElement | null {
   if (matches == null) return null;
 

@@ -115,7 +115,7 @@ export {
   useRouteCurrent,
 };
 
-export * from './lib/constants'
+export * from "./lib/constants";
 
 ///////////////////////////////////////////////////////////////////////////////
 // DANGER! PLEASE READ ME!

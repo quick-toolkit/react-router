@@ -232,7 +232,12 @@ function reactRouterDom() {
         sourcemap: !PRETTY,
         banner: createBanner("React Router DOM", version),
       },
-      external: ["history", "react", "react-dom", "@quick-toolkit/react-router"],
+      external: [
+        "history",
+        "react",
+        "react-dom",
+        "@quick-toolkit/react-router",
+      ],
       plugins: [
         babel({
           exclude: /node_modules/,
@@ -545,7 +550,12 @@ function reactRouterDomV5Compat() {
         },
         name: "ReactRouterDOMv5Compat",
       },
-      external: ["history", "react", "@quick-toolkit/react-router", "@quick-toolkit/react-router-dom"],
+      external: [
+        "history",
+        "react",
+        "@quick-toolkit/react-router",
+        "@quick-toolkit/react-router-dom",
+      ],
       plugins: [
         extensions({ extensions: [".tsx", ".ts"] }),
         babel({
@@ -579,7 +589,12 @@ function reactRouterDomV5Compat() {
         },
         name: "ReactRouterDOMv5Compat",
       },
-      external: ["history", "react", "@quick-toolkit/react-router", "@quick-toolkit/react-router-dom"],
+      external: [
+        "history",
+        "react",
+        "@quick-toolkit/react-router",
+        "@quick-toolkit/react-router-dom",
+      ],
       plugins: [
         extensions({ extensions: [".tsx", ".ts"] }),
         babel({

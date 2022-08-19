@@ -15,8 +15,14 @@ import {
   _renderMatches,
 } from "./hooks";
 import type { RouteMatch, RouteObject } from "./router";
-import {invariant, normalizePathname, PathMatch, stripBasename, warning} from "./router";
-import {LocaleLanguageKey} from "./constants";
+import {
+  invariant,
+  normalizePathname,
+  PathMatch,
+  stripBasename,
+  warning,
+} from "./router";
+import { LocaleLanguageKey } from "./constants";
 
 export interface MemoryRouterProps {
   basename?: string;
@@ -116,31 +122,28 @@ export interface RouteProps {
   children?: React.ReactNode;
   element?: React.ReactNode | null;
   validator?: (match: RouteMatch) => boolean;
-  icon?: React.ReactNode | null;
-  title?: string | Record<LocaleLanguageKey, string>;
+  title?: string | Partial<Record<LocaleLanguageKey, string>>;
   name?: string;
   index?: boolean;
   path?: string;
 }
 
-export interface PathRouteProps extends Omit<RouteProps, 'index'> {
+export interface PathRouteProps extends Omit<RouteProps, "index"> {
   index?: false;
 }
 
 export interface LayoutRouteProps {
-  icon?: React.ReactNode | null;
   validator?: (match: RouteMatch) => boolean;
   children?: React.ReactNode;
-  title?: string | Record<LocaleLanguageKey, string>;
+  title?: string | Partial<Record<LocaleLanguageKey, string>>;
   element?: React.ReactNode | null;
   name?: string;
 }
 
 export interface IndexRouteProps {
-  icon?: React.ReactNode | null;
   validator?: (match: RouteMatch) => boolean;
   element?: React.ReactNode | null;
-  title?: string | Record<LocaleLanguageKey, string>;
+  title?: string | Partial<Record<LocaleLanguageKey, string>>;
   name?: string;
   index: true;
 }
@@ -312,7 +315,6 @@ export function createRoutesFromChildren(
       validator: element.props.validator,
       path: element.props.path,
       name: element.props.name,
-      icon: element.props.icon,
     };
 
     if (element.props.children) {
